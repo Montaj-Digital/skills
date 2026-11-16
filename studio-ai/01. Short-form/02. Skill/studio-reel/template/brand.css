@@ -1,0 +1,21 @@
+/* your brand 2027 — brand layer for the reel template.
+   Swap this file (fonts + tokens) to re-skin every card and caption. */
+@font-face { font-family: "Display"; src: url("assets/fonts/Display-Medium.ttf") format("truetype"); font-weight: 500; font-display: block; }
+@font-face { font-family: "Display"; src: url("assets/fonts/Display-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: block; }
+@font-face { font-family: "Display"; src: url("assets/fonts/Display-Bold.ttf") format("truetype"); font-weight: 700; font-display: block; }
+@font-face { font-family: "Display"; src: url("assets/fonts/Display-ExtraBold.ttf") format("truetype"); font-weight: 800; font-display: block; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/Inter-400-latin.woff2") format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/Inter-700-latin.woff2") format("woff2"); font-weight: 700; font-display: block; }
+
+:root {
+  --magenta: #22d3ee;      /* capital-400 / look-magenta */
+  --violet: #2563eb;       /* trustline-600 */
+  --lilac: #a5f3fc;        /* future-300 — kickers */
+  --blue: #34d399;         /* look-glow-blue — "yes" marks */
+  --grad: linear-gradient(265.4deg, #22d3ee -26.78%, #2563eb 111.51%);          /* gradient-look-cta */
+  --grad-text: linear-gradient(90deg, #22d3ee 0%, #38bdf8 45%, #60a5fa 100%);   /* capital-400 → horizon-400 */
+  --glass: linear-gradient(160deg, rgba(30, 41, 59, 0.60) 0%, rgba(29, 25, 37, 0.74) 100%); /* trustline-800 / charcoal-800 tint */
+  --glow-rgb: 56, 189, 248;
+  --font-display: "Display", sans-serif;
+  --font-body: "Inter", sans-serif;
+}

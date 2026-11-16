@@ -1,0 +1,11 @@
+# your work stays local
+01. Short-form/05. Projects/*
+01. Short-form/06. Renders/*
+02. Long-form/05. Projects/*
+02. Long-form/06. Renders/*
+!**/.gitkeep
+08. Planner/*
+!08. Planner/README.md
+**/.cache/
+__pycache__/
+.DS_Store

@@ -1,0 +1,105 @@
+/* Brand kits screen (Studio AI). Uses the app's theme tokens, so it follows light and dark. */
+.bview .bwrap { max-width: 1680px; margin: 0 auto; }
+.bgrid { display: grid; grid-template-columns: 220px minmax(380px, 1fr) 560px; gap: 22px; align-items: start; }
+@media (max-width: 1280px) { .bgrid { grid-template-columns: 200px 1fr; } .bprev { grid-column: 1 / -1; position: static !important; } }
+
+.blist { display: flex; flex-direction: column; gap: 8px; position: sticky; top: 0; }
+.btile { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; text-align: left; background: var(--panel); border: 1px solid var(--line); }
+.btile.on { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 25%, transparent); }
+.btile.add { border-style: dashed; }
+.bsw { flex: none; width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; }
+.bsw.plus { color: var(--accent); background: var(--grad-soft, transparent); }
+.bname { display: flex; flex-direction: column; min-width: 0; }
+.bname b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bname small { color: var(--muted); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.bmain { min-width: 0; }
+.bhead { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.bhead > div { flex: 1; }
+.bhead h2 { margin: 0; font-size: 22px; }
+.bhead small { color: var(--muted); }
+.bnote { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; color: var(--muted); margin-bottom: 12px; }
+.bbody { display: flex; flex-direction: column; gap: 14px; }
+.bbody.ro { opacity: .75; }
+.bsec { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.bsec h3 { margin: 0; font-size: 14px; }
+.bfield { display: flex; flex-direction: column; gap: 4px; }
+.bfield small { color: var(--muted); font-size: 11px; }
+.blab { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.bfield input[type=text], .bfield textarea, .bfield select { width: 100%; }
+.brow { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; }
+.bcols { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.cpick { display: flex; gap: 6px; align-items: center; }
+.cpick input[type=color] { width: 34px; height: 30px; padding: 2px; border-radius: 8px; cursor: pointer; flex: none; }
+.cpick input.hex { width: 84px; font-family: ui-monospace, monospace; font-size: 12px; }
+.bcontrast { display: flex; flex-wrap: wrap; gap: 8px; }
+.bcr { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 4px 9px 4px 4px; border-radius: 99px; border: 1px solid var(--line); }
+.bcr i { font-style: normal; font-weight: 700; width: 26px; height: 22px; border-radius: 99px; display: grid; place-items: center; font-size: 11px; }
+.bcr.ok b { color: #1f9d5c; } .bcr.mid b { color: #b4740a; } .bcr.bad b { color: #d4364a; }
+.bcr.bad { border-color: #f0b7c0; }
+
+.frole { display: flex; flex-direction: column; gap: 8px; padding-bottom: 6px; }
+.frole + .frole { border-top: 1px solid var(--line); padding-top: 10px; }
+.fcur { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.fcur b { font-size: 14px; }
+.fcur small { color: var(--muted); }
+.fcur button { margin-left: auto; }
+.fresults { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px; max-height: 260px; overflow: auto; }
+.fres { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; padding: 8px 10px; border-radius: 10px; }
+.fsamp { font-size: 19px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.fres small { color: var(--muted); font-size: 11px; }
+.lic { color: var(--muted); font-size: 11px; }
+
+.blogos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.bslot { display: flex; flex-direction: column; gap: 4px; }
+.bslot small { color: var(--muted); font-size: 11px; min-height: 28px; }
+.bthumb { height: 86px; border-radius: 10px; display: grid; place-items: center; cursor: pointer; overflow: hidden; border: 1px solid var(--line);
+  background: repeating-conic-gradient(#d9d6de 0 25%, #f2f0f5 0 50%) 0 0 / 14px 14px; color: var(--muted); }
+.bslot.light .bthumb { background: #1c1a24; }
+.bthumb img { max-width: 86%; max-height: 64px; object-fit: contain; }
+.bslot.bg .bthumb img { max-width: 100%; max-height: 100%; width: 100%; height: 100%; object-fit: cover; }
+.bslot-act { display: flex; gap: 6px; }
+
+.blines { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.bline { display: flex; gap: 8px; align-items: center; width: 100%; }
+.bline input[type=text] { flex: 1; }
+
+.bprev { position: sticky; top: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.bprev h3 { margin: 0 0 10px; font-size: 14px; }
+.bfr-row { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.bfr { margin: 0; display: flex; flex-direction: column; gap: 4px; }
+.bfr-in { overflow: hidden; border-radius: 10px; background: #000; position: relative; box-shadow: 0 6px 18px rgba(0, 0, 0, .18); }
+.bfr-in iframe { border: 0; transform-origin: 0 0; position: absolute; left: 0; top: 0; pointer-events: none; }
+.bfr figcaption { font-size: 11px; color: var(--muted); }
+
+/* brand per video: header chip, its menu, the wizard's first step, the client badge in Open */
+.brandchip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 4px; border-radius: 99px; font-size: 12px; margin-left: 4px; }
+.brandchip .lc { width: 12px; height: 12px; transform: rotate(90deg); opacity: .6; }
+.brandchip.client { border-color: var(--accent); }
+.bdot { width: 16px; height: 16px; border-radius: 50%; flex: none; display: inline-block; }
+.brandmenu { min-width: 220px; }
+.brandmenu button { display: flex; align-items: center; gap: 8px; width: 100%; }
+.brandmenu button.on { font-weight: 700; }
+.brandpicks { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)) !important; }
+.brandpick { align-items: center; }
+.bp-logo { width: 100%; height: 92px; border-radius: 12px; display: grid; place-items: center; overflow: hidden; }
+.bp-logo img { max-width: 70%; max-height: 60%; object-fit: contain; }
+.bp-logo.plus { color: var(--accent); border: 1.5px dashed var(--line-2); }
+.wz-actions.left { justify-content: flex-start; margin-bottom: 8px; }
+.reel .th .clientb { position: absolute; left: 8px; bottom: 8px; max-width: calc(100% - 16px); font-size: 10px; font-weight: 600; color: #fff;
+  background: rgba(0, 0, 0, .62); padding: 2px 8px; border-radius: 99px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.clientsel { max-width: 200px; }
+
+/* the long-form editor has its own brand switch */
+body:has(#lfview:not([hidden])) #brandChip { display: none !important; }
+
+/* import a brand guide */
+.bimp-sec { border-color: var(--accent); }
+.bimp { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.bimp input[type=text] { flex: 1; min-width: 180px; }
+.bimp-run { display: flex; align-items: center; gap: 10px; }
+.bimp-run small { color: var(--muted); }
+.bimp-run button { margin-left: auto; }
+.bimp-notes ul { margin: 6px 0 0; padding-left: 18px; }
+.bimp-notes li { margin: 2px 0; }
+.bimp-run .spin { border-color: var(--line-2); border-top-color: var(--accent); }

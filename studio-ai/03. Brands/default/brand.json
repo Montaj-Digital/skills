@@ -1,0 +1,39 @@
+{
+  "id": "default",
+  "name": "Default",
+  "website": "",
+  "default": true,
+  "colors": {
+    "primary": "#2563eb",
+    "accent": "#22d3ee",
+    "gradient": ["#22d3ee", "#2563eb"],
+    "text": "#ffffff",
+    "kicker": "#a5f3fc",
+    "highlight": "#34d399",
+    "keyword": ["#22d3ee", "#38bdf8", "#60a5fa"],
+    "glass_tint": ["rgba(30, 41, 59, 0.60)", "rgba(15, 23, 42, 0.74)"],
+    "takeover_bg": "#0f172a"
+  },
+  "fonts": {
+    "display": {"family": "Display", "files": [
+      {"file": "fonts/Display-Medium.ttf", "weight": 500},
+      {"file": "fonts/Display-SemiBold.ttf", "weight": 600},
+      {"file": "fonts/Display-Bold.ttf", "weight": 700},
+      {"file": "fonts/Display-ExtraBold.ttf", "weight": 800}]},
+    "body": {"family": "Inter", "files": [
+      {"file": "fonts/Inter-400-latin.woff2", "weight": 400},
+      {"file": "fonts/Inter-700-latin.woff2", "weight": 700}]},
+    "licence_note": "Display-*.ttf and Inter-*.woff2 are Inter (SIL Open Font License, see OFL-Inter.txt). Free to use."
+  },
+  "logos": {"light": "logos/logo-light.svg", "dark": null, "mark": null},
+  "images": {"background": "images/end-bg.jpg"},
+  "captions": {"keyword": "gradient", "weight": 800},
+  "endscreen": {
+    "lines": [{"text": "Follow"}, {"text": "for more", "bold": true}],
+    "cta": "Follow for more"
+  },
+  "voice": {
+    "tone": "Clear, confident and practical. Sentence case, no emoji, no exclamation marks.",
+    "cta": "Follow for more"
+  }
+}

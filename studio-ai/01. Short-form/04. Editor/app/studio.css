@@ -1,0 +1,52 @@
+/* AI studio panel (phase 6): slides in over the left of the editor. Uses the app's theme tokens (light and dark). */
+.aipanel { position: fixed; top: 72px; left: 0; bottom: 0; width: 440px; z-index: 25; overflow: auto; padding: 16px 18px 28px;
+  background: var(--panel); border-right: 1px solid var(--line); box-shadow: 12px 0 40px rgba(0, 0, 0, .12); display: flex; flex-direction: column; gap: 14px; }
+#aiBtn.on { border-color: var(--accent); }
+.ai-head { display: flex; align-items: flex-start; gap: 10px; }
+.ai-head > div { flex: 1; }
+.ai-head h2 { margin: 0; font-size: 22px; }
+.ai-head .gt { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.ai-head small { color: var(--muted); }
+.ai-sec { display: flex; flex-direction: column; gap: 8px; }
+.ai-sec h3 { margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.ai-sh { display: flex; align-items: center; justify-content: space-between; }
+.ai-bin { display: flex; flex-direction: column; gap: 6px; }
+.ai-m { display: grid; grid-template-columns: 20px 64px 1fr auto; gap: 8px; align-items: center; padding: 6px; border: 1px solid var(--line); border-radius: 10px; }
+.ai-m.busy { opacity: .85; }
+.ai-th { width: 64px; height: 40px; border-radius: 6px; background: #1b1e22 center / cover; display: grid; place-items: center; }
+.ai-mt { min-width: 0; }
+.ai-mt b { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13px; }
+.ai-mt small { color: var(--muted); font-size: 11px; }
+.ai-empty { color: var(--muted); font-size: 12px; padding: 10px; border: 1px dashed var(--line-2); border-radius: 10px; }
+.ai-sec textarea { width: 100%; resize: vertical; }
+.ai-opts { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; font-size: 12px; color: var(--muted); }
+.ai-opts label { display: inline-flex; align-items: center; gap: 6px; }
+.ai-opts .ai-len { width: 56px; }
+.ai-opts select { max-width: 150px; }
+.ai-go { display: flex; align-items: center; gap: 10px; }
+.ai-go small { color: var(--muted); font-size: 11px; }
+.ai-run { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; text-align: center; }
+.ai-run .spin, .ai-th .spin, .ai-hc .spin { border-color: var(--line-2); border-top-color: var(--accent); }
+.ai-run small { color: var(--muted); }
+.ai-clip { display: flex; justify-content: center; background: #000; border-radius: 12px; overflow: hidden; }
+.ai-video { display: block; max-width: 100%; max-height: 52vh; }
+.ai-ct { display: flex; flex-direction: column; }
+.ai-ct small { color: var(--muted); font-size: 11px; }
+.ai-sum { margin: 0; font-size: 12.5px; line-height: 1.45; }
+.ai-parts summary { cursor: pointer; font-size: 12px; color: var(--muted); }
+.ai-parts ol { margin: 6px 0 0; padding-left: 20px; font-size: 12px; }
+.ai-parts li small { display: block; color: var(--muted); }
+.ai-acts { display: flex; flex-wrap: wrap; gap: 6px; }
+.ai-acts a.button { display: inline-flex; align-items: center; padding: 5px 11px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--text); text-decoration: none; font-size: 13px; }
+.ai-change { display: flex; gap: 6px; }
+.ai-change input { flex: 1; }
+.ai-hist > div { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.ai-hist small { color: var(--muted); font-size: 11px; }
+.ai-hc { width: 44px; height: 56px; padding: 0; border-radius: 8px; background: #1b1e22 center / cover; display: grid; place-items: center; color: var(--danger); }
+.ai-hc.on { box-shadow: 0 0 0 2px var(--accent); }
+.ai-del { align-self: flex-start; }
+/* an inserted clip on the Video track */
+.clipb.ins { background: var(--grad); border-color: transparent; }
+.clipb.ins .insl { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-size: 10px; font-weight: 700; color: #fff; letter-spacing: .04em; text-transform: uppercase; pointer-events: none; }
+/* over the long-form editor (its view sits at z-index 40) */
+body:has(#lfview:not([hidden])) .aipanel { z-index: 45; }

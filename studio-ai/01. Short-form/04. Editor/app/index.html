@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Studio AI</title>
+<link rel="icon" type="image/svg+xml" href="/brand/mark.svg" />
+<script>
+  // light (default) or dark, remembered per browser; set before the page paints so there's no flash
+  try { document.documentElement.dataset.theme = localStorage.getItem("theme") === "dark" ? "dark" : "light"; } catch (e) {}
+</script>
+<link rel="stylesheet" href="/app/app.css" />
+<link rel="stylesheet" href="/app/brands.css" />
+<link rel="stylesheet" href="/app/planner.css">
+<link rel="stylesheet" href="/app/calendar.css">
+<link rel="stylesheet" href="/app/results.css">
+<link rel="stylesheet" href="/app/studio.css" />
+<script src="/app/icons.js"></script>
+</head>
+<body>
+<header class="bar">
+  <div class="brand">
+    <img class="logo logo-light" src="/brand/logo-light.svg" alt="Your brand" />
+    <img class="logo logo-dark" src="/brand/logo-white.svg" alt="Your brand" />
+    <span class="prod">Studio AI</span>
+    <span class="vsep"></span>
+    <b id="projName">Reel</b><button id="brandChip" class="brandchip" hidden title="Who this video is for: click to switch brand"></button><span id="status" class="status">Loading…</span>
+  </div>
+  <div class="actions">
+    <div class="btngroup">
+      <button id="undo" class="icon" title="Undo (⌘Z)" aria-label="Undo"><i data-ico="undo-2"></i></button>
+      <button id="redo" class="icon" title="Redo (⇧⌘Z)" aria-label="Redo"><i data-ico="redo-2"></i></button>
+    </div>
+    <button id="helpBtn" class="icon" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts"><i data-ico="keyboard"></i></button>
+    <button id="themeBtn" class="icon theme" title="Switch to dark mode" aria-label="Switch to dark mode"><i class="ti-moon" data-ico="moon"></i><i class="ti-sun" data-ico="sun"></i></button>
+    <span class="sep"></span>
+    <button id="newBtn" title="Start a new video from a raw camera file"><i data-ico="plus"></i>New</button>
+    <button id="openBtn" title="Open a past video"><i data-ico="folder-open"></i>Open</button>
+    <button id="brandsBtn" title="Client brand kits: colours, fonts, logos and end screens"><i data-ico="palette"></i>Brands</button>
+    <span class="sep"></span>
+    <button id="save" title="Save reel.json and rebuild (⌘S)"><i data-ico="save"></i>Save</button>
+    <button id="render" class="primary" title="Save and render the final MP4"><i data-ico="clapperboard"></i>Render</button>
+  </div>
+</header>
+
+<div id="banner" class="banner" hidden></div>
+
+<main class="top">
+  <section class="stage">
+    <div class="stage-in">
+      <div id="screen" class="screen">
+        <iframe id="pvA" class="pv" allow="autoplay" title="Preview"></iframe>
+        <iframe id="pvB" class="pv" allow="autoplay" title="Preview"></iframe>
+        <div id="ovl" class="ovl"></div>
+        <div id="pvMsg" class="pvmsg"><span class="spin"></span>Building preview…</div>
+        <div id="building" class="building" hidden><span class="spin"></span>Updating</div>
+        <video id="rawPv" class="rawpv" muted loop playsinline hidden></video>
+        <div id="drop" class="drop" hidden>
+          <div class="dropin"><div class="dropic"><i data-ico="film"></i></div><b>Drop the raw video here</b><span>or</span>
+            <button id="pickFile">Choose a file</button><span class="hint">MP4 or MOV, straight from the camera</span></div>
+          <input type="file" id="fileIn" accept="video/*,.mov,.mp4,.m4v" hidden />
+        </div>
+      </div>
+    </div>
+    <div class="transport">
+      <button id="toStart" class="icon ghost" title="Go to start (Home)" aria-label="Go to start"><i data-ico="skip-back"></i></button>
+      <button id="back" class="icon ghost" title="Back one frame (←)" aria-label="Back one frame"><i data-ico="chevron-left"></i></button>
+      <button id="play" class="playbtn" title="Play / pause (Space)" aria-label="Play"><i data-ico="play"></i></button>
+      <button id="fwd" class="icon ghost" title="Forward one frame (→)" aria-label="Forward one frame"><i data-ico="chevron-right"></i></button>
+      <button id="toEnd" class="icon ghost" title="Go to end (End)" aria-label="Go to end"><i data-ico="skip-forward"></i></button>
+      <span id="tc" class="tc">0:00.00</span>
+      <button id="mute" class="icon ghost" title="Mute" aria-label="Mute"><i data-ico="volume-2"></i></button>
+    </div>
+  </section>
+  <aside class="inspector">
+    <div id="insp"></div>
+  </aside>
+</main>
+
+<section class="timeline">
+  <div class="tl-tools">
+    <div class="add">
+      <button id="addText" title="Add a line of text at the playhead"><i data-ico="type"></i>Text</button>
+      <button id="addChip" title="Add a chip at the playhead"><i data-ico="tag"></i>Chip</button>
+      <div class="menu-wrap">
+        <button id="addCard"><i data-ico="layout-template"></i>Card<i class="caret" data-ico="chevron-right"></i></button>
+        <div id="cardMenu" class="menu list" hidden></div>
+      </div>
+      <div class="menu-wrap">
+        <button id="addTk"><i data-ico="layers"></i>Takeover<i class="caret" data-ico="chevron-right"></i></button>
+        <div id="tkMenu" class="menu list" hidden></div>
+      </div>
+      <button id="addVideo" title="Lay another video over this one at the playhead: an insert, B-roll or a testimonial"><i data-ico="video"></i>Video</button>
+      <button id="addBlur" title="Blur or cover part of the picture at the playhead"><i data-ico="eye-off"></i>Blur</button>
+      <div class="menu-wrap">
+        <button id="addFx"><i data-ico="sparkles"></i>Effect<i class="caret" data-ico="chevron-right"></i></button>
+        <div id="fxMenu" class="menu list" hidden></div>
+      </div>
+    </div>
+    <div class="cutctl">
+      <button id="splitBtn" title="Split the video at the playhead (S)"><i data-ico="scissors"></i>Split</button>
+      <div class="btngroup">
+        <button id="markIn" class="icon" title="Mark the start of a part to remove (I)" aria-label="Mark in"><i data-ico="bracket-in"></i></button>
+        <button id="markOut" class="icon" title="Mark the end of a part to remove (O)" aria-label="Mark out"><i data-ico="bracket-out"></i></button>
+      </div>
+      <span id="cutbar" class="cutbar"></span>
+    </div>
+    <span id="warn" class="warn"></span>
+    <label class="tool switch" title="Snap blocks to the start of words (hold Alt to drag freely)"><input type="checkbox" id="snap" checked /><span></span>Snap to words</label>
+    <label class="tool zoomctl"><i data-ico="zoom-in"></i><input type="range" id="zoom" min="12" max="320" value="60" aria-label="Timeline zoom" /></label>
+  </div>
+  <div class="tl-body">
+    <div class="tl-labels">
+      <div class="lab ruler-lab"></div>
+      <div class="lab" data-lane="tk"><i data-ico="layers"></i>Takeovers<b class="cnt"></b></div>
+      <div class="lab" data-lane="text"><i data-ico="type"></i>Text<b class="cnt"></b></div>
+      <div class="lab" data-lane="chips"><i data-ico="tag"></i>Chips<b class="cnt"></b></div>
+      <div class="lab tall" data-lane="cards"><i data-ico="layout-template"></i>Cards<b class="cnt"></b></div>
+      <div class="lab" data-lane="caps"><i data-ico="captions"></i>Captions<b class="cnt"></b></div>
+      <div class="lab" data-lane="fx"><i data-ico="sparkles"></i>Effects<b class="cnt"></b></div>
+      <div class="lab" data-lane="rd"><i data-ico="eye-off"></i>Blur<b class="cnt"></b></div>
+      <div class="lab short" data-lane="sfx"><i data-ico="music"></i>Sounds<b class="cnt"></b></div>
+      <div class="lab zoomlab" data-lane="zoom"><i data-ico="zoom-in"></i>Zoom<b class="cnt"></b></div>
+      <div class="lab ovlab" data-lane="ov"><i data-ico="list-video"></i>Overlays<b class="cnt"></b></div>
+      <div class="lab video" data-lane="video"><i data-ico="film"></i>Video</div>
+      <div class="lab audio" data-lane="audio"><i data-ico="audio-lines"></i>Audio · words</div>
+    </div>
+    <div id="scroller" class="tl-scroll">
+      <div id="content" class="tl-content">
+        <div id="ruler" class="ruler lane-ruler"></div>
+        <div class="lane" data-lane="tk"></div>
+        <div class="lane" data-lane="text"></div>
+        <div class="lane" data-lane="chips"></div>
+        <div class="lane tall" data-lane="cards"></div>
+        <div class="lane" data-lane="caps"></div>
+        <div class="lane" data-lane="fx"></div>
+        <div class="lane" data-lane="rd"></div>
+        <div class="lane short" data-lane="sfx"></div>
+        <div class="lane zoomlane" data-lane="zoom"></div>
+        <div class="lane ovlane" data-lane="ov"></div>
+        <div class="lane video" data-lane="video"><canvas id="film"></canvas></div>
+        <div class="lane audio" data-lane="audio"><canvas id="wave"></canvas></div>
+        <div id="endzone" class="endzone"></div>
+        <div id="playhead" class="playhead"><i></i><span id="phTime"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="home" class="home" hidden></div>
+<div id="brandview" class="home bview" hidden></div>
+<div id="modal" class="modal" hidden></div>
+<div id="toast" class="toast" hidden></div>
+<datalist id="dl-icons"></datalist>
+<datalist id="dl-logos"></datalist>
+<script>
+  // fill every <i data-ico="name"> with its Lucide icon
+  window.icon = (name, cls) => `<svg class="lc ${cls || ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${(window.ICONS || {})[name] || ""}</svg>`;
+  window.fillIcons = (root) => (root || document).querySelectorAll("i[data-ico]").forEach((i) => { if (!i.firstChild) i.innerHTML = icon(i.dataset.ico); });
+  fillIcons();
+</script>
+<script src="/app/upload.js"></script>
+<script src="/app/app.js"></script>
+<script src="/app/flow.js"></script>
+<script src="/app/home.js"></script>
+<script src="/app/brands.js"></script>
+<script src="/app/studio.js"></script>
+<script src="/app/planner.js"></script>
+<script src="/app/calendar.js"></script>
+<script src="/app/results.js"></script>
+</body>
+</html>

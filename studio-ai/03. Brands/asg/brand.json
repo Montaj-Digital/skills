@@ -1,0 +1,63 @@
+{
+  "id": "asg",
+  "name": "ASG",
+  "website": "",
+  "colors": {
+    "primary": "#2563eb",
+    "accent": "#22d3ee",
+    "gradient": [
+      "#22d3ee",
+      "#2563eb"
+    ],
+    "text": "#ffffff",
+    "kicker": "#a5f3fc",
+    "highlight": "#34d399",
+    "keyword": [
+      "#22d3ee",
+      "#38bdf8",
+      "#60a5fa"
+    ],
+    "glass_tint": [
+      "rgba(30, 41, 59, 0.60)",
+      "rgba(15, 23, 42, 0.74)"
+    ],
+    "takeover_bg": "#0f172a"
+  },
+  "fonts": {
+    "display": {
+      "family": "",
+      "files": []
+    },
+    "body": {
+      "family": "",
+      "files": []
+    }
+  },
+  "logos": {
+    "light": null,
+    "dark": null,
+    "mark": null
+  },
+  "images": {
+    "background": null
+  },
+  "captions": {
+    "keyword": "gradient",
+    "weight": 800
+  },
+  "endscreen": {
+    "lines": [
+      {
+        "text": "Visit"
+      },
+      {
+        "text": "your website"
+      }
+    ],
+    "cta": ""
+  },
+  "voice": {
+    "tone": "",
+    "cta": ""
+  }
+}
